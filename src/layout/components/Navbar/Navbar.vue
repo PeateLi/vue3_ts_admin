@@ -97,8 +97,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
- .el-tabs--card ::v-deep .el-tabs__header{
-    border-bottom: 0px;
-    margin-top: 19px;
+.el-tabs--card ::v-deep .el-tabs__header {
+  border-bottom: 0px;
+  margin-top: 19px;
 }
 </style>

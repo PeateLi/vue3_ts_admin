@@ -5,8 +5,8 @@
         <sidebar></sidebar>
       </el-aside>
       <el-container>
-        <el-header> 
-            <navbar></navbar>
+        <el-header>
+          <navbar></navbar>
         </el-header>
         <el-main>
           <el-card class="box-card">
@@ -20,9 +20,9 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Sidebar , Navbar } from "./components/index";
+import { Sidebar, Navbar } from "./components/index";
 export default defineComponent({
-  components: { Sidebar , Navbar },
+  components: { Sidebar, Navbar },
 });
 </script>
 
@@ -39,7 +39,7 @@ body {
     }
   }
 }
-.el-header{
-    box-shadow: 1px 1px 20px 0px  #EBEEF5;
+.el-header {
+  box-shadow: 1px 1px 20px 0px #ebeef5;
 }
 </style>
