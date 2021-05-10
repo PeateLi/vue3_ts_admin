@@ -4,7 +4,7 @@ import "element-plus/lib/theme-chalk/index.css";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-
+// import { plugins } from '@/plugins'; // 引入全局插件
+// .use(plugins)
 import "./permission";
-
 createApp(App).use(ElementPlus).use(store).use(router).mount("#app");

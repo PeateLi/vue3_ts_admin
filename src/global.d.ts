@@ -1,0 +1,1 @@
+import { paramType } from "./types";
