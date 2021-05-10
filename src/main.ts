@@ -5,5 +5,6 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-import './permission' 
+import "./permission";
+
 createApp(App).use(ElementPlus).use(store).use(router).mount("#app");
