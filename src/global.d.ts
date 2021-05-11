@@ -1,1 +1,16 @@
-import { paramType } from "./types";
+
+declare namespace global {
+   interface paramData {
+        [key: number]: paramType;
+    }
+    interface paramType {
+        name: string;
+        id: number;
+        user: Array<userType>;
+    }
+      
+    interface userType {
+          [key: string]: number;
+    }
+}
+

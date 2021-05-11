@@ -1,7 +1,7 @@
 
-    export interface paramData {
+  export interface paramData {
         [key: number]: paramType;
-    }
+  }
     interface paramType {
       name: string;
       id: number;
