@@ -17,16 +17,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-
+interface tabType<T> {
+  [key: string]: T;
+}
+import { defineComponent, reactive, ref } from "vue";
 export default defineComponent({
   setup() {
-    let editableTabsValue = "2";
-    let editableTabs: {
-      title: string;
-      name: string;
-      content: string;
-    }[] = [
+    let editableTabsValue = ref<string>("2");
+    let editableTabs: tabType<string>[] = reactive([
       {
         title: "Tab 1",
         name: "1",
@@ -57,41 +55,48 @@ export default defineComponent({
         name: "6",
         content: "Tab 6 content",
       },
-    ];
-    let tabIndex = 2;
-    return {
-      editableTabsValue,
-      editableTabs,
-      tabIndex,
-    };
-  },
-  methods: {
-    addTab() {
-      let newTabName = ++this.tabIndex + "";
-      this.editableTabs.push({
+    ]);
+    let tabIndex = ref<number>(2);
+    const addTab = function (): void {
+      let newTabName: string = ++tabIndex.value + "";
+      editableTabs.push({
         title: "New Tab",
         name: newTabName,
         content: "New Tab content",
       });
-      this.editableTabsValue = newTabName;
-    },
-    removeTab(targetName: string) {
-      let tabs = this.editableTabs;
-      let activeName = this.editableTabsValue;
+      editableTabsValue.value = newTabName;
+    };
+    const removeTab = function (targetName: string): void {
+      console.log(targetName);
+      let tabs: tabType<string>[] = editableTabs;
+      let activeName: string = editableTabsValue.value;
       if (activeName === targetName) {
-        tabs.forEach((tab, index) => {
+        tabs.forEach((tab: tabType<string>, index: number) => {
           if (tab.name === targetName) {
-            let nextTab = tabs[index + 1] || tabs[index - 1];
+            let nextTab: any = tabs[index + 1] || tabs[index - 1];
             if (nextTab) {
               activeName = nextTab.name;
             }
           }
         });
       }
-
-      this.editableTabsValue = activeName;
-      this.editableTabs = tabs.filter((tab) => tab.name !== targetName);
-    },
+      editableTabsValue.value = activeName;
+      editableTabs.length = 0;
+      let newabsData = tabs.filter(
+        (tab: tabType<string>) => tab.name !== targetName
+      );
+      newabsData.map((x) => {
+        editableTabs.push(x);
+      });
+      console.log(editableTabs);
+    };
+    return {
+      editableTabsValue,
+      editableTabs,
+      tabIndex,
+      addTab,
+      removeTab,
+    };
   },
 });
 </script>

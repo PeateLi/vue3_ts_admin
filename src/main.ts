@@ -6,5 +6,8 @@ import router from "./router";
 import store from "./store";
 // import { plugins } from '@/plugins'; // 引入全局插件
 // .use(plugins)
+import { mockXHR } from "../mock/index";
+mockXHR();
 import "./permission";
+
 createApp(App).use(ElementPlus).use(store).use(router).mount("#app");

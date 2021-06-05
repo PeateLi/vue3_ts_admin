@@ -11,22 +11,20 @@
 </template>
 
 <script lang="ts">
-
-import { defineComponent , reactive } from "vue";
-
+import {defineComponent , reactive} from  "vue";
 export default defineComponent({
   setup() {
     const data: global.paramData = reactive({
-        name: "test data",
-        id: '1',
-        user: [{ userid: 123 }],
+      name: "test data",
+      id: "1",
+      user: [{ userid: 123 }],
     });
     const tableData: {
-        [key: number]: {
+      [key: number]: {
         date: string;
         name: string;
         address: string;
-      }
+      };
     } = reactive([
       {
         date: "2016-05-02",
@@ -35,7 +33,7 @@ export default defineComponent({
       },
     ]);
     const shoppingList: {
-        [key: string]: string;
+      [key: string]: string;
     }[] = reactive([
       {
         date: "2016-05-02",
@@ -44,15 +42,15 @@ export default defineComponent({
       },
     ]);
 
-    const handleClick = function (str: string):string {
+    const handleClick = function (str: string): string {
       console.log(str);
-      return '返回的字符串'
+      return "返回的字符串";
     };
     return {
       data,
       tableData,
       shoppingList,
-      handleClick
+      handleClick,
     };
   },
 });
