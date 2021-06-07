@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent , reactive} from  "vue";
+import { defineComponent, reactive } from "vue";
 export default defineComponent({
   setup() {
     const data: global.paramData = reactive({

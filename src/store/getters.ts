@@ -1,6 +1,6 @@
 const getters = {
   getToken: (state: any) => {
-    return state.user.vToken;
+    return state.user.token;
   },
   getMenus: (state: any) => {
     return state.user.menus;

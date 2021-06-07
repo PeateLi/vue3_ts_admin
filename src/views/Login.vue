@@ -1,14 +1,16 @@
 <template>
   <div class="video_container">
-    <video src="@/assets/video/login_background.mp4" autoplay="autoplay" muted  loop></video>
+    <video
+      src="@/assets/video/login_background.mp4"
+      autoplay="autoplay"
+      muted
+      loop
+    ></video>
   </div>
 
   <div class="page-login">
-
     <div class="page_login_content_header">时间是一切财富中最宝贵的财富</div>
-    <h2>
-      Blog And ErrorLog Admin  
-    </h2>
+    <h2>Blog And ErrorLog Admin</h2>
     <div class="page_login_content_container">
       <div class="page_login_content_form">
         <el-card>
@@ -41,17 +43,21 @@
               </el-input>
             </el-form-item>
             <el-form-item prop="authCode">
-                <el-input placeholder="请输入验证码" v-model="rulesForm.authCode">
-                    <template #append>
-                        {{getCodaData}}
-                    </template>
-                </el-input>
+              <el-input placeholder="请输入验证码" v-model="rulesForm.authCode">
+                <template #append>
+                  {{ getCodaData }}
+                </template>
+              </el-input>
             </el-form-item>
             <el-form-item>
-                 <el-button type="primary" style="width:100%;" @click="submitForm('form')">登录</el-button>
+              <el-button
+                type="primary"
+                style="width: 100%"
+                @click="submitForm('form')"
+                >登录</el-button
+              >
             </el-form-item>
           </el-form>
-
         </el-card>
       </div>
     </div>
@@ -59,7 +65,7 @@
 </template>
 
 <script lang="ts">
-import { getCode , login } from "../api/user";
+import { getCode, login } from "../api/user";
 interface userParams {
   userName: string;
   passWord: string;
@@ -77,21 +83,27 @@ interface rulerType {
   min?: number;
   max?: number;
 }
-import { useStore } from "vuex"
+import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import { ElMessage } from 'element-plus'
-import { defineComponent, reactive , onMounted, ref , getCurrentInstance } from "vue";
+import { ElMessage } from "element-plus";
+import {
+  defineComponent,
+  reactive,
+  onMounted,
+  ref,
+  getCurrentInstance,
+} from "vue";
 export default defineComponent({
   setup() {
     const router = useRouter();
-    const { ctx } = getCurrentInstance() as any
-    const store = useStore(); 
+    const { ctx } = getCurrentInstance() as any;
+    const store = useStore();
     const rulesForm: userParams = reactive({
       userName: "",
       passWord: "",
       authCode: "",
     });
-    let getCodaData = ref<number | null>(null)
+    let getCodaData = ref<number | null>(null);
     const rules: userRuler = reactive({
       userName: [{ required: true, message: "请输入用户名", trigger: "blur" }],
       passWord: [
@@ -100,59 +112,58 @@ export default defineComponent({
       ],
       authCode: [{ required: true, message: "请输入验证码", trigger: "blur" }],
     });
-    const getAutoCode = async function(){
-        let { data } = await getCode()
-        getCodaData.value = data
-    }
+    const getAutoCode = async function () {
+      let { data } = await getCode();
+      getCodaData.value = data;
+    };
     onMounted(() => {
-        getAutoCode()
-    })
-    const submitForm = (formName:string) => {
-        ctx.$refs[formName].validate((valid:any) => {
-          if (valid) {
-            login({
-                username: rulesForm.userName,
-                password: rulesForm.passWord,
-                code:rulesForm.authCode
-            })
-            .then((res:any) => {
-                if(res.data.state === '1'){
-                    ElMessage.success({
-                        message: '登录成功！',
-                        type: 'success'
-                    });
-                    store.dispatch('setUserInfo',res.data)
-                    router.push('/')
-                }
-            })
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
-        });
-    }
+      getAutoCode();
+    });
+    const submitForm = (formName: string) => {
+      ctx.$refs[formName].validate((valid: any) => {
+        if (valid) {
+          login({
+            username: rulesForm.userName,
+            password: rulesForm.passWord,
+            code: rulesForm.authCode,
+          }).then((res: any) => {
+            if (res.data.state === "1") {
+              ElMessage.success({
+                message: "登录成功！",
+                type: "success",
+              });
+              store.dispatch("setUserInfo", res.data);
+              router.push("/");
+            }
+          });
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    };
     return {
       rulesForm,
       rules,
       getCodaData,
-      submitForm
+      submitForm,
     };
   },
 });
 </script>
 
 <style lang="scss" scoped>
-.page-login{
-    display: flex;
-    flex-direction: column;
-    position: relative; /*脱离文档流*/
-    top: 50%; /*偏移*/
-    transform: translate(0,-50%);
-    h2 {
-      text-align: center;
-      color: #606266;
-      margin-top: 0px;
-    }
+.page-login {
+  display: flex;
+  flex-direction: column;
+  position: relative; /*脱离文档流*/
+  top: 50%; /*偏移*/
+  transform: translate(0, -50%);
+  h2 {
+    text-align: center;
+    color: #606266;
+    margin-top: 0px;
+  }
 }
 .page_login_content_header {
   height: 48px;
@@ -167,15 +178,15 @@ export default defineComponent({
     margin: 0px auto;
   }
 }
-.video_container{
+.video_container {
   position: absolute;
   left: 0px;
   top: 0px;
   width: 100%;
   height: 100%;
   z-index: -99;
-  video{ 
-    width:100%;
+  video {
+    width: 100%;
     height: 100%;
     object-fit: fill;
   }

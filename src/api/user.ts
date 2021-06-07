@@ -15,8 +15,8 @@ export async function getUser(params?: any) {
   });
 }
 
-export  function getCode(data?: any) {
-  return  request({
+export function getCode(data?: any) {
+  return request({
     url: "admin/getCode",
     method: "post",
     data,

@@ -1,3 +1,1 @@
-<template>
-    401
-</template>
+<template>401</template>
