@@ -1,6 +1,14 @@
 <template>
+  <div class="video_container">
+    <video src="@/assets/video/login_background.mp4" autoplay="autoplay" muted  loop></video>
+  </div>
+
   <div class="page-login">
+
     <div class="page_login_content_header">时间是一切财富中最宝贵的财富</div>
+    <h2>
+      Blog And ErrorLog Admin  
+    </h2>
     <div class="page_login_content_container">
       <div class="page_login_content_form">
         <el-card>
@@ -134,6 +142,18 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.page-login{
+    display: flex;
+    flex-direction: column;
+    position: relative; /*脱离文档流*/
+    top: 50%; /*偏移*/
+    transform: translate(0,-50%);
+    h2 {
+      text-align: center;
+      color: #606266;
+      margin-top: 0px;
+    }
+}
 .page_login_content_header {
   height: 48px;
   line-height: 48px;
@@ -142,12 +162,22 @@ export default defineComponent({
   color: #606266;
 }
 .page_login_content_container {
-  h2 {
-    text-align: center;
-  }
   .page_login_content_form {
     width: 280px;
     margin: 0px auto;
+  }
+}
+.video_container{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: -99;
+  video{ 
+    width:100%;
+    height: 100%;
+    object-fit: fill;
   }
 }
 </style>
