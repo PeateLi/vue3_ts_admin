@@ -92,7 +92,6 @@ export default [
   {
     url: "admin/info*",
     response: (config: config) => {
-      console.log(tokens[config.query.token]);
       return {
         code: 200,
         data: tokens[config.query.token],

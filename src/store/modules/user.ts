@@ -1,5 +1,6 @@
 import { getUser } from "../../api/user";
-import { toTree } from "../../utils/public-method"
+import { toTree } from "../../utils/public-method";
+import { useRouter } from "vue-router";
 interface userType {
   userInfo: userInfoType;
   menus: Array<roterType>;
@@ -20,6 +21,8 @@ interface roterType {
   parentId: number;
   sort: number;
   title: string;
+  redirect: string;
+  path: string;
 }
 const state: userType = {
   userInfo: {
@@ -28,7 +31,7 @@ const state: userType = {
     username: "",
     auth: "",
   },
-  menus:[],
+  menus: [],
 };
 
 const mutations = {
@@ -36,16 +39,18 @@ const mutations = {
     state.userInfo = info;
     localStorage.setItem("uid", state.userInfo.uid);
   },
-  async SET_MENUS(state: userType, info: userInfoType){
-    const { data } = await getUser({token:info.token})
-    state.menus = toTree(data.menus,'id','parentId')
-  }
+  async SET_MENUS(state: userType, info: userInfoType) {
+    const { data } = await getUser({ token: info.token });
+
+    state.menus = toTree(data.menus, "id", "parentId");
+    console.log(toTree(data.menus, "id", "parentId"));
+  },
 };
 
 const actions = {
   async setUserInfo({ commit }: any, info: userInfoType) {
     await commit("SET_INFO", info);
-    await commit("SET_MENUS",info)
+    await commit("SET_MENUS", info);
   },
 };
 

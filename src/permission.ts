@@ -1,10 +1,11 @@
 import router from "./router/index";
 import { ElMessage } from "element-plus";
+import { filterAsyncRouter } from "./utils/public-method";
 // 进度条
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
-
 //路由拦截器
+import store from "./store";
 router.beforeEach((to, from, next) => {
   NProgress.start();
   if (to.meta.requireAuth) {
@@ -20,7 +21,11 @@ router.beforeEach((to, from, next) => {
       });
     }
   } else {
+    // const getRouter = filterAsyncRouter(store.state.user.menus); //过滤路由
+    // console.log(getRouter)
+    // router.addRoute(getRouter)
     next();
+    // router.addRoute(store.state.user.menus)
   }
 });
 router.afterEach(() => {

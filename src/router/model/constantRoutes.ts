@@ -19,6 +19,21 @@ export const constantRoutes: Array<RouteRecordRaw> = [
       },
     ],
   },
+  // {
+  //   path:'/blog',
+  //   redirect:'/blog/list',
+  //   component: Layout,
+  //   name: "Blog",
+  //   meta: {title: "博客管理", icon: "el-icon-house", requireAuth: true},
+  //   children:[
+  //     {
+  //       name: "List",
+  //       path:"list",
+  //       component: () => import("@/views/Blog/list.vue"),
+  //       meta: { title: "博客列表", icon: "el-icon-house", requireAuth: true },
+  //     },
+  //   ]
+  // },
   {
     path: "/login",
     name: "login",
