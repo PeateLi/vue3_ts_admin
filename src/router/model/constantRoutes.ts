@@ -1,5 +1,5 @@
-import { RouteRecordRaw } from "vue-router";
-import Layout from "@/layout/Index.vue";
+import { RouteRecordRaw } from 'vue-router'
+import Layout from '@/layout/Index.vue'
 /**
  * constantRoutes
  * 没有权限要求的基本页面
@@ -7,17 +7,17 @@ import Layout from "@/layout/Index.vue";
  */
 export const constantRoutes: Array<RouteRecordRaw> = [
   {
-    path: "/",
+    path: '/',
     component: Layout,
-    redirect: "/index",
+    redirect: '/index',
     children: [
       {
-        path: "index",
-        component: () => import("@/views/Home.vue"),
-        name: "index",
-        meta: { title: "首页", icon: "el-icon-house", requireAuth: true },
-      },
-    ],
+        path: 'index',
+        component: () => import('@/views/Home.vue'),
+        name: 'index',
+        meta: { title: '首页', icon: 'el-icon-house', requireAuth: true }
+      }
+    ]
   },
   // {
   //   path:'/blog',
@@ -35,9 +35,9 @@ export const constantRoutes: Array<RouteRecordRaw> = [
   //   ]
   // },
   {
-    path: "/login",
-    name: "login",
-    component: () => import("@/views/Login.vue"),
-    meta: { requireAuth: false },
-  },
-];
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/Login.vue'),
+    meta: { requireAuth: false }
+  }
+]

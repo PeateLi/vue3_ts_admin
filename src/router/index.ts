@@ -1,11 +1,11 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import { constantRoutes } from "./model/constantRoutes";
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { constantRoutes } from './model/constantRoutes'
 
-const routes: Array<RouteRecordRaw> = [...constantRoutes];
+const routes: Array<RouteRecordRaw> = [...constantRoutes]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes,
-});
+  routes
+})
 
-export default router;
+export default router
