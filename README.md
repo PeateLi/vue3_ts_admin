@@ -25,5 +25,7 @@ npm run test:unit
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 规范: 
+feat/${rtx}/function fix/${rtx}/function doc/${rtx}/function style/${rtx}/function refractor/${rtx}/function
+
+commit规范: feat: fix: doc: style: refractor:
