@@ -19,18 +19,7 @@ const roles = {
       },
     ],
     ordinary: [
-      {
-        hidden: 0,
-        icon: "vitedingdan",
-        id: 1,
-        level: 0,
-        name: "oms",
-        parentId: 0,
-        sort: 0,
-        title: "订单",
-        path:"vitedingdan",
-        redirect:'/vitedingdan'
-      },
+      
     ],
   };
   

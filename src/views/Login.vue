@@ -65,7 +65,7 @@
 </template>
 
 <script lang="ts">
-import { getCode, login } from "../api/user";
+import { getCode, login } from '../api/user';
 interface userParams {
   userName: string;
   passWord: string;
@@ -83,34 +83,34 @@ interface rulerType {
   min?: number;
   max?: number;
 }
-import { useStore } from "vuex";
-import { useRouter } from "vue-router";
-import { ElMessage } from "element-plus";
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+import { ElMessage } from 'element-plus';
 import {
   defineComponent,
   reactive,
   onMounted,
   ref,
-  getCurrentInstance,
-} from "vue";
+  getCurrentInstance
+} from 'vue';
 export default defineComponent({
   setup() {
     const router = useRouter();
     const { ctx } = getCurrentInstance() as any;
     const store = useStore();
     const rulesForm: userParams = reactive({
-      userName: "",
-      passWord: "",
-      authCode: "",
+      userName: '',
+      passWord: '',
+      authCode: ''
     });
     let getCodaData = ref<number | null>(null);
     const rules: userRuler = reactive({
-      userName: [{ required: true, message: "请输入用户名", trigger: "blur" }],
+      userName: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
       passWord: [
-        { required: true, message: "请输入密码", trigger: "blur" },
-        { min: 6, max: 6, message: "密码长度必须在6个字符", trigger: "blur" },
+        { required: true, message: '请输入密码', trigger: 'blur' },
+        { min: 6, max: 6, message: '密码长度必须在6个字符', trigger: 'blur' }
       ],
-      authCode: [{ required: true, message: "请输入验证码", trigger: "blur" }],
+      authCode: [{ required: true, message: '请输入验证码', trigger: 'blur' }]
     });
     const getAutoCode = async function () {
       let { data } = await getCode();
@@ -125,19 +125,19 @@ export default defineComponent({
           login({
             username: rulesForm.userName,
             password: rulesForm.passWord,
-            code: rulesForm.authCode,
+            code: rulesForm.authCode
           }).then((res: any) => {
-            if (res.data.state === "1") {
+            if (res.data.state === '1') {
               ElMessage.success({
-                message: "登录成功！",
-                type: "success",
+                message: '登录成功！',
+                type: 'success'
               });
-              store.dispatch("setUserInfo", res.data);
-              router.push("/");
+              store.dispatch('setUserInfo', res.data);
+              router.push('/');
             }
           });
         } else {
-          console.log("error submit!!");
+          console.log('error submit!!');
           return false;
         }
       });
@@ -146,9 +146,9 @@ export default defineComponent({
       rulesForm,
       rules,
       getCodaData,
-      submitForm,
+      submitForm
     };
-  },
+  }
 });
 </script>
 

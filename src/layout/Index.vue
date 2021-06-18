@@ -19,10 +19,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { Sidebar, Navbar } from "./components/index";
+import { defineComponent } from 'vue';
+import { Sidebar, Navbar } from './components/index';
 export default defineComponent({
-  components: { Sidebar, Navbar },
+  components: { Sidebar, Navbar }
 });
 </script>
 

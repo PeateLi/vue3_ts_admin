@@ -12,26 +12,25 @@ html {
 </style>
 
 <script lang="ts">
-import { useStore } from "vuex";
-import { defineComponent, onMounted } from "vue";
+import { useStore } from 'vuex';
+import { defineComponent, onMounted } from 'vue';
 
 export default defineComponent({
   setup() {
-    onMounted(() => {
-      const store = useStore();
-      const savaStore = function () {
-        sessionStorage.setItem("state", JSON.stringify(store.state));
-      };
-      window.addEventListener("beforeunload", savaStore);
-      const getStore = () => {
-        let state = sessionStorage.getItem("state");
-        if (state) {
-          store.replaceState(Object.assign({}, store.state, JSON.parse(state)));
-          sessionStorage.removeItem("state");
-        }
-      };
-      getStore();
-    });
-  },
+    const store = useStore();
+    const savaStore = function () {
+      sessionStorage.setItem('state', JSON.stringify(store.state));
+    };
+    window.addEventListener('beforeunload', savaStore);
+    const getStore = async () => {
+      let state = sessionStorage.getItem('state');
+      if (state) {
+        store.replaceState(Object.assign({}, store.state, JSON.parse(state)));
+
+        sessionStorage.removeItem('state');
+      }
+    };
+    getStore();
+  }
 });
 </script>
