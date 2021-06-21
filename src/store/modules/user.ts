@@ -46,10 +46,9 @@ const mutations = {
     console.log(state.menus);
     const getRouter = filterAsyncRouter(toTree(data.menus, 'id', 'parentId')); // 过滤路由
     getRouter.map((x: RouteRecordRaw) => {
-      // 因为vue3去除了addRoutes 所以addRoute只能以对象的方式添加进去。
+        // 因为vue3去除了addRoutes 所以addRoute只能以对象的方式添加进去。
       router.addRoute(x);
     });
-    console.log(router.getRoutes());
   },
   SET_ROUTE(state: userType) {
     const data_menus = JSON.stringify(state.menus);

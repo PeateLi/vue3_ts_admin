@@ -4,7 +4,6 @@
     text-color="#fff"
     active-text-color="#ffd04b"
   >
-    {{ menu }}
     <sidebar-item
       v-for="item in menu"
       :info="item"
@@ -22,12 +21,17 @@ export default defineComponent({
       loader: () => import('./components/SidebarItem.vue')
     })
   },
-  setup() {
-    const store = useStore();
-    const menu = store.state.user.menus;
-    return {
-      menu
-    };
+  data(){
+    return{
+      menu:[] as any
+    }
+    
+  },
+  mounted(){
+    setTimeout(() => {
+      this.menu = this.$store.state.user.menus
+    },0)
+      
   }
 });
 </script>
